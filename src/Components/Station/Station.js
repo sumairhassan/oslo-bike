@@ -1,20 +1,38 @@
 import React from "react";
 import Card from "../Card/Card";
+import StationStatus from "./StationStatus";
+import "./Station.css";
 
 const Station = ({ station }) => {
-const [show, setShow] = React.useState(false);
+  const [show, setShow] = React.useState(false);
+  function toggleShow() {
+    setShow(!show);
+  }
+  console.log(station);
   return (
-    <Card title={station.name}>
-      <>
-        <div>
-          <span>Address: </span> {station.address}
-        </div>
-        <div>
-          <span>Capacity: </span> {station.capacity}
-        </div>
-        <button>Show Status</button>
-      </>
-    </Card>
+    <>
+      {show ? (
+        <StationStatus
+          id={station.station_id}
+          name={station.name}
+          handleClick={toggleShow}
+        />
+      ) : (
+        <Card title={station.name}>
+          <>
+            <div className="section">
+              <span className="title">Address: </span> {station.address}
+            </div>
+            <div>
+              <span className="title">Capacity: </span> {station.capacity}
+            </div>
+            <button className="showButton" onClick={toggleShow}>
+              Show Status
+            </button>
+          </>
+        </Card>
+      )}
+    </>
   );
 };
 

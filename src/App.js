@@ -4,7 +4,7 @@ import Station from "./Components/Station/Station";
 
 const App = () => {
   const [data, setData] = useState(null);
-  
+
   useEffect(() => {
     fetch(
       "https://gbfs.urbansharing.com/oslobysykkel.no/station_information.json"
@@ -26,7 +26,7 @@ const App = () => {
       <div className="navbar">Oslo City Bike</div>
       <div className="root">
         {data.stations.map((station) => (
-          <Station key={station.station_id} station={station}/>
+          <Station key={station.station_id} station={station} />
         ))}
       </div>
     </div>
