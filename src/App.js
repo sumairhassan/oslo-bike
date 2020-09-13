@@ -1,26 +1,36 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import "./App.css";
+import Station from "./Components/Station/Station";
 
-function App() {
+const App = () => {
+  const [data, setData] = useState(null);
+  
+  useEffect(() => {
+    fetch(
+      "https://gbfs.urbansharing.com/oslobysykkel.no/station_information.json"
+    )
+      .then((response) => response.json())
+      .then((response) => {
+        setData(response.data);
+      });
+  }, []);
+
+  if (data == null) {
+    return <div>loading</div>;
+  }
+
+  console.log(data);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="navbar">Oslo City Bike</div>
+      <div className="root">
+        {data.stations.map((station) => (
+          <Station key={station.station_id} station={station}/>
+        ))}
+      </div>
     </div>
   );
-}
+};
 
 export default App;

@@ -1,0 +1,21 @@
+.container{
+    margin: 20px;
+    color: antiquewhite;
+    flex: 0 0 30%;
+    max-width: 30%;
+  }
+  
+  .card{
+    min-height: 170px;
+    border-radius: 10px;
+    background: #27293d;
+    padding: 12px;
+    box-shadow: 0 2px 12px -2px rgba(0, 0, 0, 0.3);
+    transition: all 0.2s;
+  }
+  
+  .card:hover {
+    box-shadow: 0 3px 20px -2px rgba(0, 0, 0, 0.7);
+    transform: translateY(-0.3rem);
+  }
+  
